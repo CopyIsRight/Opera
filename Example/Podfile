@@ -1,0 +1,6 @@
+use_frameworks!
+target 'Opera_Tests' do
+  pod 'Opera', :path => '../'
+  
+  pod 'Kiwi'
+end
