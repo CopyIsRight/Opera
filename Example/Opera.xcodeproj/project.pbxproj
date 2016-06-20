@@ -24,7 +24,7 @@
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
+		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		7F222D315A0638516140ADF7 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		93BEA25E3B8821E145B98AF3 /* Opera.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Opera.podspec; path = ../Opera.podspec; sourceTree = "<group>"; };
@@ -124,12 +124,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "Opera_Tests" */;
 			buildPhases = (
-				FD32A206BBA98679E334F91F /* 📦 Check Pods Manifest.lock */,
+				FD32A206BBA98679E334F91F /* [CP] Check Pods Manifest.lock */,
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				91DF483D9392DADB71053C45 /* 📦 Embed Pods Frameworks */,
-				4F04DCB3FC2EA8EF75BE5715 /* 📦 Copy Pods Resources */,
+				91DF483D9392DADB71053C45 /* [CP] Embed Pods Frameworks */,
+				4F04DCB3FC2EA8EF75BE5715 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -148,7 +148,7 @@
 			attributes = {
 				CLASSPREFIX = CIR;
 				LastUpgradeCheck = 0720;
-				ORGANIZATIONNAME = "Pietro Caselani";
+				ORGANIZATIONNAME = "Copy Is Right";
 				TargetAttributes = {
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
@@ -185,14 +185,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4F04DCB3FC2EA8EF75BE5715 /* 📦 Copy Pods Resources */ = {
+		4F04DCB3FC2EA8EF75BE5715 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -200,14 +200,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Opera_Tests/Pods-Opera_Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		91DF483D9392DADB71053C45 /* 📦 Embed Pods Frameworks */ = {
+		91DF483D9392DADB71053C45 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -215,14 +215,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Opera_Tests/Pods-Opera_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FD32A206BBA98679E334F91F /* 📦 Check Pods Manifest.lock */ = {
+		FD32A206BBA98679E334F91F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
