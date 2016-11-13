@@ -10,7 +10,7 @@
 
 @interface CIRFactory ()
 
-@property(nonatomic, strong) NSMutableDictionary<NSString *, NSMutableArray<NSString *> *> *factoriesDictionary;
+@property (nonatomic, strong) NSMutableDictionary<NSString *, NSMutableArray<NSString *> *> *factoriesDictionary;
 
 @end
 
@@ -64,21 +64,21 @@
 }
 //endregion
 
-//region Public
+//region Registration
+
 - (void)registerFactoryClass:(Class)factoryClass forProductClass:(Class)productClass
 {
-	NSString *key = NSStringFromClass(productClass);
-	NSString *factoryClassName = NSStringFromClass(factoryClass);
-
-	NSMutableArray<NSString *> *factories = _factoriesDictionary[key];
-	if (factories == nil)
-	{
-		factories = [[NSMutableArray alloc] init];
-		_factoriesDictionary[key] = factories;
-	}
-
-	[factories addObject:factoryClassName];
+	[self registerFactoryClass:factoryClass forProductName:NSStringFromClass(productClass)];
 }
+
+- (void)registerFactoryClass:(Class)factoryClass forProductProtocol:(Protocol *)productProtocol
+{
+	[self registerFactoryClass:factoryClass forProductName:NSStringFromProtocol(productProtocol)];
+}
+
+//endregion
+
+//region Creation
 
 - (id)productOfClass:(Class)productClass params:(NSDictionary<NSString *, id> *)params
 {
@@ -98,10 +98,59 @@
 	return [factory productWithParameters:params];
 }
 
+- (id)productOfProtocol:(Protocol *)productProtocol params:(NSDictionary<NSString *, id> *)params
+{
+	return [self productOfProtocol:productProtocol params:params required:YES];
+}
+
+- (id)productOfProtocol:(Protocol *)productProtocol params:(NSDictionary<NSString *, id> *)params required:(BOOL)required
+{
+	id <CIRFactory> factory = [self factoryForProtocol:productProtocol params:params];
+
+	if (factory == nil && required)
+	{
+		NSString *reason = [NSString stringWithFormat:@"No registered factory for product of type `%@` with parameters %@.", NSStringFromProtocol(productProtocol), params];
+		@throw [NSException exceptionWithName:@"NoFactoryFoundException" reason:reason userInfo:nil];
+	}
+
+	return [factory productWithParameters:params];
+}
+
+//endregion
+
+//region Factory finder
+
 - (id <CIRFactory>)factoryForClass:(Class)productClass params:(NSDictionary<NSString *, id> *)params
 {
-	NSString *key = NSStringFromClass(productClass);
-	NSMutableArray<NSString *> *factories = _factoriesDictionary[key];
+	return [self factoryWithName:NSStringFromClass(productClass) params:params];
+}
+
+- (id <CIRFactory>)factoryForProtocol:(Protocol *)productProtocol params:(NSDictionary<NSString *, id> *)params
+{
+	return [self factoryWithName:NSStringFromProtocol(productProtocol) params:params];
+}
+
+//endregion
+
+//region Private
+
+- (void)registerFactoryClass:(Class)factoryClass forProductName:(NSString *)productName
+{
+	NSString *factoryClassName = NSStringFromClass(factoryClass);
+
+	NSMutableArray<NSString *> *factories = _factoriesDictionary[productName];
+	if (factories == nil)
+	{
+		factories = [[NSMutableArray alloc] init];
+		_factoriesDictionary[productName] = factories;
+	}
+
+	[factories addObject:factoryClassName];
+}
+
+- (id <CIRFactory>)factoryWithName:(NSString *)name params:(NSDictionary<NSString *, id> *)params
+{
+	NSMutableArray<NSString *> *factories = _factoriesDictionary[name];
 
 	id <CIRFactory> selected = nil, factory;
 
@@ -113,7 +162,7 @@
 		{
 			if (selected)
 			{
-				NSString *reason = [NSString stringWithFormat:@"Found multiple factories for product of type `%@` with parameters: %@", key, params];
+				NSString *reason = [NSString stringWithFormat:@"Found multiple factories for product of type `%@` with parameters: %@", name, params];
 				@throw [NSException exceptionWithName:@"MultipleFactoriesFoundException" reason:reason userInfo:nil];
 			}
 			else
@@ -123,6 +172,7 @@
 
 	return selected;
 }
+
 //endregion
 
 @end
