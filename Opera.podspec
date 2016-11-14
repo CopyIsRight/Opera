@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Opera'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'Factory pattern for ObjC'
 
   s.description      = 'A generic implementation of factory pattern for ObjC'
@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.author           = { "Pietro Caselani" => "pc1992@gmail.com", "Felipe Lobo" => "frlwolf@gmail.com" }
   s.source           = { :git => 'https://github.com/CopyIsRight/Opera.git', :tag => s.version.to_s }
 
-  s.ios.deployment_target = '7.0'
+  s.ios.deployment_target = '8.0'
 
   s.source_files = 'Opera/Classes/**/*'
 end

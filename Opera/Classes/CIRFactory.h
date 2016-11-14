@@ -23,11 +23,19 @@
 
 - (void)registerFactoryClass:(Class)factoryClass forProductClass:(Class)productClass;
 
+- (void)registerFactoryClass:(Class)factoryClass forProductProtocol:(Protocol *)productProtocol;
+
 - (id)productOfClass:(Class)productClass params:(NSDictionary<NSString *, id> *)params;
 
 - (id)productOfClass:(Class)productClass params:(NSDictionary<NSString *, id> *)params required:(BOOL)required;
 
+- (id)productOfProtocol:(Protocol *)productProtocol params:(NSDictionary<NSString *, id> *)params;
+
+- (id)productOfProtocol:(Protocol *)productProtocol params:(NSDictionary<NSString *, id> *)params required:(BOOL)required;
+
 - (id <CIRFactory>)factoryForClass:(Class)productClass params:(NSDictionary<NSString *, id> *)params;
+
+- (id <CIRFactory>)factoryForProtocol:(Protocol *)productProtocol params:(NSDictionary<NSString *, id> *)params;
 
 - (BOOL)isEqual:(id)other;
 
